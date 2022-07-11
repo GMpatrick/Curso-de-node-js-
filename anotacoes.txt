@@ -1,0 +1,53 @@
+- O node em sua essencia serve para executar codigos javascript fora de um navegador
+
+- utiliza o v8 engine
+
+- É utilizado para construir api'serve
+
+------------
+
+como o node funciona
+
+- Possui apenas um nucleo
+
+- suporta varias operações simultaneas (non-blocking)
+
+--- Módulos
+
+- sempre que a gente criar um arquivo no node ele é um Módulos
+
+- O node js vem com modulos pre instalados (path, fs,http, etc)
+
+- Para importar um modulo, utilizamos o comando CommonJs
+
+// sintaxe
+
+const path = require('path')
+const meuArquivo = require('./meu-arquvio.js')
+
+--- npm node package mananger
+
+-- (permite que instale modulos de terceiros)
+
+-- esses modulos são armazenados em uma pasta chamada "node_modules"
+
+-- um arquivo chamado "package.json" lista todos os modulos que instalamos pelo npm
+
+// comandos
+
+npm init -- Cria o package .json
+
+npm install express -- instala um pacote localmente
+
+npm -g nodemon -- instala um pacote globalmente 
+
+interessante instalar o nodemon com a dependencia de dev
+
+npm install nodemon --save-dev
+
+---------
+
+Para rodar um script de package.json 
+npm run start:dev
+
+
