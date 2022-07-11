@@ -50,4 +50,7 @@ npm install nodemon --save-dev
 Para rodar um script de package.json 
 npm run start:dev
 
+----------
+
+quando a gente acessa uma pagina no navegador a requisição é do tipo get 
 
