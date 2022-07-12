@@ -54,3 +54,13 @@ npm run start:dev
 
 quando a gente acessa uma pagina no navegador a requisição é do tipo get 
 
+------
+
+
+para não enviar arquivos como senhas para o git é criado o arquivo .env que define as variaveis de ambientes locais
+
+
+--------
+
+
+quando a gente quer criar algum registro a gente usa o metodo post 
