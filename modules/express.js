@@ -5,30 +5,28 @@ const app = express()
 
 app.use(express.json())
 
-app.get('/home', (req, res) => {
-    res.contentType('application/html')
-    res.status(200).send('<h1> Hello word </h1>')
+
+app.get('/users', async (req, res)=> {
+    try{
+        const users = await UserModel.find({})   
+
+        res.status(200).json(users)
+    }catch(error){
+       return res.status(500).send(error.message)
+    }
 })
 
-const port = 8080
+//pegar um uusario por id
+app.get('/users/:id', async (req, res) => { /*  com os dois pontos id eu estarei recebendo um parametro */
+    try {
+        const id = req.params.id
 
-app.listen(port, () => console.log(`Rodando com express na porta: ${port}`))
+        const user = await UserModel.findById(id)
 
-app.get('/users', (req, res)=> {
-    const users = [
-        {
-            name: 'John deep',
-            email: 'Joe@gmail.com',
-            idade: '40'
-        },
-        {
-            name: 'Jane deep',
-            email: 'jane@gmail.com',
-            idade: '37'
-        }
-    ]
-
-    res.status(200).json(users)
+        return res.status(202).json(user)
+    } catch (error) {
+        return res.status(500).send(error.message)
+    }
 })
 
 // post criar alguma coisa no nosso banco
@@ -43,4 +41,44 @@ app.post("/users", async (req, res) => {
     }
 
 })
+
+// atualizar usuario no banco
+// path ou put para criar
+
+/* path usar quando querer atualizar nosso registro parcialmente
+exemplo apenas o email */
+
+/* put mudar o registro por completo */
+
+app.patch('/users/:id', async (req, res) => { /*  com os dois pontos id eu estarei recebendo um parametro */
+    try {
+        const id = req.params.id
+
+        const user = await UserModel.findByIdAndUpdate(id, req.body, {new: true})
+
+        res.status(200).json(user)
+    } catch (error) {
+        return res.status(500).send(error.message)
+    }
+})
+
+// delete
+
+app.delete('/users/:id', async (req, res) => {
+    try {
+        const id = req.params.id
+
+        const user = await UserModel.findByIdAndRemove(id)
+    
+        res.status(200).json(user)
+    } catch (error) {
+        return res.status.send(error.message)
+    }
+})
+
+
+
+const port = 8080
+
+app.listen(port, () => console.log(`Rodando com express na porta: ${port}`))
 
